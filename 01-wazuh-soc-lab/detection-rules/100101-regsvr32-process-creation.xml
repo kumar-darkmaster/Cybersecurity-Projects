@@ -1,0 +1,16 @@
+<!--
+  Lab detection: regsvr32.exe process creation.
+
+  Intended for an isolated Windows/Sysmon + Wazuh lab.
+  Test and tune before any production use.
+-->
+<group name="windows,sysmon,lolbin,">
+  <rule id="100101" level="10">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\regsvr32\.exe$</field>
+    <description>Lab: Sysmon process creation involving regsvr32.exe</description>
+    <mitre>
+      <id>T1218.010</id>
+    </mitre>
+  </rule>
+</group>
